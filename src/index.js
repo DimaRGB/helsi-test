@@ -1,9 +1,14 @@
+// vendor
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { browserHistory } from 'react-router';
+
+// own
 import './index.css';
+import Router from './router';
+
 
 ReactDOM.render(
-  <App />,
+  <Router history={browserHistory} />,
   document.getElementById('root')
 );

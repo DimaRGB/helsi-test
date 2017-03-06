@@ -1,0 +1,12 @@
+.App {
+
+}
+
+.App__controls {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.App__controls label {
+  margin-right: 15px;
+}

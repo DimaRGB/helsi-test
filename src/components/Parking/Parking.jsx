@@ -7,11 +7,26 @@ import './Parking.css';
 
 export default class Parking extends Component {
 
+  getParking = ({ params: { parkingId }, parkings }) => parkings[parkingId];
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      parking: this.getParking(props)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      parking: this.getParking(nextProps)
+    });
+  }
+
   render() {
-    const { params: { parkingId } } = this.props;
+    const { parking } = this.state;
     return (
       <div>
-        {parkingId}
+        {JSON.stringify(parking)}
       </div>
     );
   }

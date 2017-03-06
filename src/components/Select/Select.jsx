@@ -10,13 +10,13 @@ export default class Select extends Component {
   static propTypes = {
     options: PropTypes.array,
     placeholder: PropTypes.string,
-    defaultValue: PropTypes.string,
+    value: PropTypes.string,
   };
 
   static defaultProps = {
     options: [],
     placeholder: 'Select',
-    defaultValue: '',
+    value: '',
   };
 
   renderOptions(options) {

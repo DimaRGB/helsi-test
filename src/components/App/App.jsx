@@ -1,15 +1,29 @@
 // vendor
-import React, { Component } from 'react';
+import React, { Component, cloneElement } from 'react';
 import { browserHistory } from 'react-router';
 
 // helsi
 import Select from 'components/Select/Select';
+import parkingSystem from 'helpers/parkingSystem';
 
 // own
 import './App.css';
 
 
 class App extends Component {
+
+  state = {
+    parkings: parkingSystem.getParkings()
+  };
+
+  componentDidMount() {
+    window.parkingSystem = parkingSystem;
+    window.addEventListener('storage', event => {
+      if (event.storageArea === localStorage) {
+        console.log(event);
+      }
+    }, false);
+  }
 
   selectParking = event => {
     const parkingId = event.target.value;
@@ -18,22 +32,20 @@ class App extends Component {
 
   render() {
     const { children, params } = this.props;
-    const options = [
-      { value: 0, label: 'parking A' },
-      { value: 1, label: 'parking B' },
-    ];
+    const { parkings } = this.state;
+    const options = parkings.map(({ id, name }) => ({ label: name, value: id }));
     return (
       <div className='App'>
         <div className='App__controls'>
           <label>Виберіть парковку:</label>
           <Select
             options={options}
+            value={params.parkingId}
             onChange={this.selectParking}
-            defaultValue={params.parkingId}
           />
         </div>
         <div className='App__content'>
-          {children}
+          {cloneElement(children, { parkings })}
         </div>
       </div>
     );

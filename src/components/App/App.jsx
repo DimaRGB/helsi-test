@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 
 // helsi
 import Select from 'components/Select/Select';
-import parkingSystem from 'helpers/parkingSystem';
+import parkingSystem from 'models/parkingSystem';
 
 // own
 import './App.css';
